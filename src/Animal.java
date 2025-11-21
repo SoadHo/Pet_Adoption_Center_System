@@ -63,5 +63,11 @@ public class Animal {
     public void setAdopted(boolean adopted) {
         this.adopted = adopted;
     }
+
+    @Override
+    public String toString() {
+        return name;
+
+    }
 }
 
