@@ -1,18 +1,20 @@
+import java.time.LocalDate;
+
 public class Adoption {
-    int date;
+    LocalDate date;
     Animal animal;
     Person person;
 
-    public Adoption(int date, Animal animal, Person person) {
+    public Adoption(LocalDate date, Animal animal, Person person) {
         this.date = date;
         this.animal = animal;
         this.person = person;
     }
-    public int getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
