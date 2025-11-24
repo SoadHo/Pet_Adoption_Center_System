@@ -1,5 +1,6 @@
 import org.w3c.dom.ls.LSOutput;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,6 +53,38 @@ public class Shelter {
 
         for (Adoption adoption : adoptionHistory) {
             System.out.println(adoption);
+        }
+    }
+
+    public void loadWaitlistFromCSV(String file){
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+
+            while( (line = br.readLine()) != null) {
+                if (line.trim().isEmpty()) continue;
+                String[] parts = line.split(",");
+                String name = parts[0].trim();
+                int phone = Integer.parseInt(parts[1].trim());
+
+                waitlist.add(new Person(name, phone));
+            }
+
+            System.out.println("Waitlist loaded");
+
+        } catch (IOException e) {
+            System.out.println("No waitlist");
+        }
+    }
+
+    public void saveWaitlistToCSV(String file){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+            for (Person person : waitlist) {
+                bw.write(person.getName()+","+person.getContact());
+                bw.newLine();
+            }
+            System.out.println("Waitlist saved");
+        } catch (IOException e){
+            System.out.println("Error saving waitlist");
         }
     }
 }

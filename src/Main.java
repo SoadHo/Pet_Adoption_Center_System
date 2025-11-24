@@ -3,9 +3,11 @@ public class Main {
     public static void main(String[] args) {
         Shelter shelter = new Shelter();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to the Shelter");
 
-        while(true) {
+        shelter.loadWaitlistFromCSV("waitlist.csv");
+
+        System.out.println("Welcome to the Shelter");
+        while (true) {
             System.out.println("Please choose an option");
             System.out.println("1. View available animals");
             System.out.println("2. View adopted animals");
@@ -15,6 +17,7 @@ public class Main {
             System.out.println("6. Make an adoption");
             System.out.println("0. Exit");
             int choice = scanner.nextInt();
+            scanner.nextLine();
             switch(choice) {
                 case 1:
                     System.out.println("Available animals:");
@@ -32,6 +35,7 @@ public class Main {
                     String name = scanner.nextLine();
                     System.out.println("Enter the customer's phone number:");
                     int phone = scanner.nextInt();
+                    scanner.nextLine();
                     Person person = new Person(name, phone);
                     shelter.addtoWaitlist(person);
                     break;
@@ -43,8 +47,10 @@ public class Main {
                     System.out.println("Make an adoption");
                     break;
                 case 0:
+                    shelter.saveWaitlistToCSV("waitlist.csv");
+                    System.out.println("Progress Saved");
                     System.out.println("Exit");
-                    break;
+                    return;
             }
         }
     }
