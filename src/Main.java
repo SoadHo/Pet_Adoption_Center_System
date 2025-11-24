@@ -41,7 +41,6 @@ public class Main {
                     break;
                 case 6:
                     System.out.println("Make an adoption");
-                    
                     break;
                 case 0:
                     System.out.println("Exit");
